@@ -3,15 +3,16 @@ package com.company;
 import java.util.Scanner;
 
 public class InputValidation {
-    private Scanner input = new Scanner(System.in);
+    
 
     public int getPositiveInt() {
+        Scanner inputInt = new Scanner(System.in);
         int numberToReturn = 0;
         boolean isNumberCorrect;
         System.out.println("Podaj wysokosc drzewa (liczba dodatnia):");
         do {
-            if (input.hasNextInt()) {
-                numberToReturn = input.nextInt();
+            if (inputInt.hasNextInt()) {
+                numberToReturn = inputInt.nextInt();
                 if (numberToReturn < 0) {
                     System.out.println("Zla liczba podaj ponownie");
                     isNumberCorrect = false;
@@ -21,7 +22,7 @@ public class InputValidation {
             } else {
                 System.err.println("Podaj liczbe!");
                 isNumberCorrect = false;
-                input.next();
+                inputInt.next();
             }
 
 
@@ -30,8 +31,8 @@ public class InputValidation {
     }
 
     public String isStringCorrect() {
-        input.next();
-        String stringToReturn = input.nextLine().toLowerCase();
+        Scanner inputString = new Scanner(System.in);
+        String stringToReturn = inputString.nextLine().toLowerCase();
         boolean isStringCorrect = false;
         do switch (stringToReturn) {
             case "right":
@@ -48,18 +49,18 @@ public class InputValidation {
                 break;
             default:
                 System.out.println("Podales zly kierunek podaj ponownie: ");
-                stringToReturn = input.nextLine().toLowerCase();
+                stringToReturn = inputString.nextLine().toLowerCase();
                 break;
         } while (!isStringCorrect);
         return stringToReturn;
     }
 
     public char isCharCorrect() {
-        input.next();
+        Scanner inputChar = new Scanner(System.in);
         char charToReturn = '\n';
         boolean isCharCorrect = false;
         do {
-            String testString = input.nextLine();
+            String testString = inputChar.nextLine();
             if (testString.length() == 1) {
                 charToReturn = testString.charAt(0);
                 isCharCorrect = true;
